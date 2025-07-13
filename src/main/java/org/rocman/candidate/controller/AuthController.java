@@ -3,8 +3,10 @@ package org.rocman.candidate.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.rocman.candidate.dtos.CandidateRegistrationDTO;
+import org.rocman.candidate.dtos.LoginDTO;
 import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.services.CandidateService;
+import org.rocman.candidate.validation.ValidEmail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -33,13 +35,11 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestParam String email,
-                                        @RequestParam String password) {
-        Optional<Candidate> candidate = candidateService.authenticate(email, password);
-        if (candidate.isPresent()) {
-            return ResponseEntity.ok(candidate.get());
-        } else {
-            return ResponseEntity.status(401).body("Invalid credentials");
-        }
+    public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
+        Optional<Candidate> candidate = candidateService.authenticate(
+                loginDTO.getEmail(), loginDTO.getPassword()
+        );
+
+        return candidate.<ResponseEntity<Object>>map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(401).body("Invalid credentials"));
     }
 }

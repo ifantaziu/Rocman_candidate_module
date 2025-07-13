@@ -1,16 +1,16 @@
 package org.rocman.candidate.dtos;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.rocman.candidate.validation.ValidEmail;
 
 @Data
 public class CandidateRegistrationDTO {
 
     @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email format")
+    @ValidEmail(message = "Email must be valid (e.g., example@domain.com)")
     private String email;
 
     @NotBlank(message = "Password is required")
@@ -26,6 +26,9 @@ public class CandidateRegistrationDTO {
     private String lastName;
 
     @NotBlank(message = "Phone number is required")
-    @Pattern(regexp = "^0[0-9]{8}$", message = "Phone number must start with 0 and have 9 digits")
+    @Pattern(
+            regexp = "^0[0-9]{8}$",
+            message = "Phone number must start with 0 and have 9 digits"
+    )
     private String phoneNumber;
 }

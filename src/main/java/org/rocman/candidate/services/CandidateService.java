@@ -39,8 +39,8 @@ public class CandidateService {
                 .filter(candidate -> passwordEncoder.matches(password, candidate.getPassword()));
     }
 
-    public Candidate uploadCV(Long candidateId, MultipartFile file) throws IOException {
-        Candidate candidate = candidateRepository.findById(candidateId)
+    public Candidate uploadCVByEmail(String email, MultipartFile file) throws IOException {
+        Candidate candidate = candidateRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Candidate not found"));
 
         byte[] fileBytes = file.getBytes();

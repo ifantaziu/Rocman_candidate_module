@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.services.CandidateService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,11 +15,12 @@ public class  CandidateController {
 
     private final CandidateService candidateService;
 
-    @PostMapping("/{id}/upload-cv")
-    public ResponseEntity<?> uploadCV(@PathVariable Long id,
-                                      @RequestParam("file") MultipartFile file) {
+    @PostMapping("/upload-cv")
+    public ResponseEntity<?> uploadCV(@RequestParam("file") MultipartFile file) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
         try {
-            Candidate candidate = candidateService.uploadCV(id, file);
+            Candidate candidate = candidateService.uploadCVByEmail(email, file);
             return ResponseEntity.ok(candidate);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error uploading CV: " + e.getMessage());
