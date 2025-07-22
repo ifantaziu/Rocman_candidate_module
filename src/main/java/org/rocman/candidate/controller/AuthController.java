@@ -34,12 +34,12 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
-        Optional<Candidate> candidate = candidateService.authenticate(
-                loginDTO.getEmail(), loginDTO.getPassword()
-        );
-
-        return candidate.<ResponseEntity<Object>>map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(401).body("Invalid credentials"));
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
+//        Optional<Candidate> candidate = candidateService.authenticate(
+//                loginDTO.getEmail(), loginDTO.getPassword()
+//        );
+//
+//        return candidate.<ResponseEntity<Object>>map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(401).body("Invalid credentials"));
+//    }
 }

@@ -34,10 +34,10 @@ public class CandidateService {
         return candidateRepository.save(candidate);
     }
 
-    public Optional<Candidate> authenticate(String email, String password) {
-        return candidateRepository.findByEmail(email)
-                .filter(candidate -> passwordEncoder.matches(password, candidate.getPassword()));
-    }
+//    public Optional<Candidate> authenticate(String email, String password) {
+//        return candidateRepository.findByEmail(email)
+//                .filter(candidate -> passwordEncoder.matches(password, candidate.getPassword()));
+//    }
 
     public Candidate uploadCVByEmail(String email, MultipartFile file) throws IOException {
         Candidate candidate = candidateRepository.findByEmail(email)
@@ -52,9 +52,9 @@ public class CandidateService {
         return candidateRepository.save(candidate);
     }
 
-    public Optional<Candidate> getCandidateProfile(Long candidateId) {
-        return candidateRepository.findById(candidateId);
-    }
+//    public Optional<Candidate> getCandidateProfile(Long candidateId) {
+//        return candidateRepository.findById(candidateId);
+//    }
 }
 
 

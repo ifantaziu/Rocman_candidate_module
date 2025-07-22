@@ -27,10 +27,10 @@ public class  CandidateController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getCandidate(@PathVariable Long id) {
-        return candidateService.getCandidateProfile(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getCandidate(@PathVariable Long id) {
+//        return candidateService.getCandidateProfile(id)
+//                .map(ResponseEntity::ok)
+//                .orElse(ResponseEntity.notFound().build());
+//    }
 }
