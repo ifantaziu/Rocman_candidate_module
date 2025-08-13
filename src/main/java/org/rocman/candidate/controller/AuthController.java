@@ -1,7 +1,11 @@
 package org.rocman.candidate.controller;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.websocket.AuthenticationException;
 import org.rocman.candidate.dtos.CandidateRegistrationDTO;
 import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.entities.PasswordResetToken;
@@ -11,8 +15,12 @@ import org.rocman.candidate.repositories.PasswordResetTokenRepository;
 import org.rocman.candidate.repositories.VerificationTokenRepository;
 import org.rocman.candidate.services.CandidateService;
 import org.rocman.candidate.services.EmailService;
+import org.rocman.candidate.utils.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +32,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+
 public class AuthController {
 
     private final CandidateService candidateService;
@@ -32,6 +41,8 @@ public class AuthController {
     private final EmailService emailService;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
     public ResponseEntity<Object> register(@Valid @RequestBody CandidateRegistrationDTO dto, BindingResult result) {
@@ -113,6 +124,27 @@ public class AuthController {
         return ResponseEntity.ok("The activation link was successfully resented");
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+        );
+        String token = jwtUtil.generateToken(request.getEmail());
+        return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @Data
+    static class LoginRequest {
+        private String email;
+        private String password;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class JwtResponse {
+        private String token;
+    }
+
     @GetMapping("/request-password-reset")
     public ResponseEntity<String> requestPasswordReset(@RequestParam String email) {
         Optional<Candidate> candidateOpt = candidateRepository.findByEmail(email);
@@ -135,6 +167,18 @@ public class AuthController {
         emailService.sendResetPasswordEmail(candidate.getEmail(), token);
 
         return ResponseEntity.ok("Please check your inbox for reset password email.");
+    }
+
+    @GetMapping("/reset-password")
+    public ResponseEntity<String> verifyResetToken(@RequestParam String token) {
+        return passwordResetTokenRepository.findByToken(token)
+                .map(resetToken -> {
+                    if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+                        return ResponseEntity.badRequest().body("The token has expired.");
+                    }
+                    return ResponseEntity.ok("Token is valid. You can now reset your password via POST.");
+                })
+                .orElse(ResponseEntity.badRequest().body("Invalid token."));
     }
 
     @PostMapping("/reset-password")

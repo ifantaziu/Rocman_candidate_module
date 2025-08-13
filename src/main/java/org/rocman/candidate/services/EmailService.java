@@ -24,7 +24,7 @@ public class EmailService {
     }
 
     public void sendResetPasswordEmail(String toEmail, String token) {
-        String link = "https://localhost:8080/api/auth/reset-password?token=" + token;
+        String link = "http://localhost:8080/api/auth/reset-password?token=" + token;
         String subject = "Password reset on ROCMAN account";
         String body = "You have requested to reset the password on ROCMAN.org account.\n\nPlease access the following link (available 30 minutes):\n" + link;
 
