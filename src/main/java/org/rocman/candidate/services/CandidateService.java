@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class CandidateService {
@@ -61,6 +64,8 @@ public class CandidateService {
             verificationTokenRepository.save(verificationToken);
 
             emailService.sendVerificationEmail(candidate.getEmail(), token);
+            log.info("New user registered | userId={} | email={} | timestamp={}",
+                    candidate.getId(), candidate.getEmail(), LocalDateTime.now());
 
             return candidate;
 

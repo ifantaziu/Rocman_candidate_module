@@ -1,0 +1,395 @@
+2025-08-21 19:28:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-21 19:28:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 9992 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-08-21 19:28:05 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-21 19:28:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-08-21 19:28:07 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-21 19:28:08 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 427 ms. Found 3 JPA repository interfaces.
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4793 ms
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-21 19:28:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-21 19:28:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-21 19:28:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-21 19:28:12 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-08-21 19:28:12 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@c190cfc
+2025-08-21 19:28:12 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-08-21 19:28:13 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-21 19:28:13 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-21 19:28:16 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-21 19:28:16 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-21 19:28:18 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-21 19:28:18 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-21 19:28:18 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-21 19:28:18 WARN  [reqId=] [userId=] [email=]
+                    [ip=] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-21 19:28:19 WARN  [reqId=] [userId=] [email=]
+                    [ip=] AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry - One of the patterns in [/api/auth/register, /api/auth/login, /api/auth/verify, api/auth/resend-verification, /api/auth/request-password-reset, /api/auth/reset-password, /error] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-08-21 19:28:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-21 19:28:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-21 19:28:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 16.415 seconds (process running for 19.728)
+2025-08-21 19:45:38 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-21 19:45:38 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-08-21 19:45:38 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-21 19:45:38 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-21 19:45:38 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-21 19:45:45 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-21 19:45:45 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 13088 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-08-21 19:45:45 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-21 19:45:45 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-08-21 19:45:47 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-21 19:45:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 156 ms. Found 3 JPA repository interfaces.
+2025-08-21 19:45:49 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-21 19:45:49 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-21 19:45:49 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-08-21 19:45:49 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-21 19:45:50 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-08-21 19:45:50 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4399 ms
+2025-08-21 19:45:50 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-21 19:45:50 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-21 19:45:50 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-21 19:45:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-21 19:45:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-08-21 19:45:52 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5a205ee5
+2025-08-21 19:45:52 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-08-21 19:45:52 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-21 19:45:52 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-21 19:45:55 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-21 19:45:55 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-21 19:45:56 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-21 19:45:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-21 19:45:56 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-21 19:45:56 WARN  [reqId=] [userId=] [email=]
+                    [ip=] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-21 19:45:57 WARN  [reqId=] [userId=] [email=]
+                    [ip=] AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry - One of the patterns in [/api/auth/register, /api/auth/login, /api/auth/verify, api/auth/resend-verification, /api/auth/request-password-reset, /api/auth/reset-password, /error] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-08-21 19:45:58 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-21 19:45:58 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-21 19:45:58 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 13.864 seconds (process running for 16.721)
+2025-08-21 20:01:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-21 20:01:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-08-21 20:01:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-21 20:01:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-21 20:01:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-21 20:36:19 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-21 20:36:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 12072 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-08-21 20:36:20 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-21 20:36:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-08-21 20:36:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-21 20:36:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 172 ms. Found 3 JPA repository interfaces.
+2025-08-21 20:36:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-21 20:36:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-21 20:36:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-08-21 20:36:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-21 20:36:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-08-21 20:36:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4384 ms
+2025-08-21 20:36:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-21 20:36:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-21 20:36:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-21 20:36:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-21 20:36:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-08-21 20:36:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@e994ca
+2025-08-21 20:36:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-08-21 20:36:26 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-21 20:36:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-21 20:36:28 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-21 20:36:29 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-21 20:36:30 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-21 20:36:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-21 20:36:30 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-21 20:36:30 WARN  [reqId=] [userId=] [email=]
+                    [ip=] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-21 20:36:30 WARN  [reqId=] [userId=] [email=]
+                    [ip=] AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry - One of the patterns in [/api/auth/register, /api/auth/login, /api/auth/verify, api/auth/resend-verification, /api/auth/request-password-reset, /api/auth/reset-password, /error] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-08-21 20:36:31 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-21 20:36:31 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-21 20:36:31 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 12.526 seconds (process running for 15.511)
+2025-08-21 20:37:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-21 20:37:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-08-21 20:37:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-21 20:37:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-21 20:37:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-22 20:00:17 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-22 20:00:17 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 12208 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-08-22 20:00:17 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-22 20:00:17 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-08-22 20:00:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-22 20:00:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 190 ms. Found 3 JPA repository interfaces.
+2025-08-22 20:00:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-22 20:00:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-22 20:00:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-08-22 20:00:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-22 20:00:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-08-22 20:00:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4687 ms
+2025-08-22 20:00:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-22 20:00:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-22 20:00:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-22 20:00:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-22 20:00:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-08-22 20:00:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3de45b6c
+2025-08-22 20:00:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-08-22 20:00:24 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-22 20:00:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-22 20:00:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-22 20:00:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-22 20:00:28 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-22 20:00:28 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-22 20:00:28 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-22 20:00:29 WARN  [reqId=] [userId=] [email=]
+                    [ip=] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-22 20:00:29 WARN  [reqId=] [userId=] [email=]
+                    [ip=] AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry - One of the patterns in [/api/auth/register, /api/auth/login, /api/auth/verify, api/auth/resend-verification, /api/auth/request-password-reset, /api/auth/reset-password, /error] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-08-22 20:00:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-22 20:00:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-22 20:00:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 13.499 seconds (process running for 16.196)
+2025-08-22 20:01:03 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-22 20:01:04 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-08-22 20:01:04 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-22 20:01:04 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-22 20:01:04 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-08-22 20:22:28 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-08-22 20:22:29 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 10212 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-08-22 20:22:29 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-08-22 20:22:29 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-08-22 20:22:33 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-22 20:22:33 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 158 ms. Found 3 JPA repository interfaces.
+2025-08-22 20:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-08-22 20:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-08-22 20:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-08-22 20:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-08-22 20:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-08-22 20:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5438 ms
+2025-08-22 20:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-22 20:22:36 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-08-22 20:22:36 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-08-22 20:22:36 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-22 20:22:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-08-22 20:22:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@457692cb
+2025-08-22 20:22:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-08-22 20:22:37 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-22 20:22:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-08-22 20:22:40 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-22 20:22:40 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-22 20:22:42 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-08-22 20:22:43 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-08-22 20:22:43 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-08-22 20:22:43 WARN  [reqId=] [userId=] [email=]
+                    [ip=] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-22 20:22:49 WARN  [reqId=] [userId=] [email=]
+                    [ip=] AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry - One of the patterns in [/api/auth/register, /api/auth/login, /api/auth/verify, api/auth/resend-verification, /api/auth/request-password-reset, /api/auth/reset-password, /error] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-08-22 20:22:52 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-08-22 20:22:53 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-08-22 20:22:53 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 25.223 seconds (process running for 28.198)
+2025-08-22 20:23:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-08-22 20:23:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-08-22 20:23:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-22 20:23:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-08-22 20:23:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
