@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <!-- === APPENDERS === -->
+    <Appenders>
+        <!-- Console logging (dev/test) -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p [reqId=%X{requestId}] [userId=%X{userId}] [email=%X{userEmail}] [ip=%X{ip}] %c{1} - %m%n"/>
+        </Console>
+
+        <!-- Rolling File logging (pentru production) -->
+        <RollingFile name="FileLogger"
+                     fileName="logs/app.log"
+                     filePattern="logs/app-%d{yyyy-MM-dd-HH}.log.gz">
+
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p [reqId=%X{requestId}] [userId=%X{userId}] [email=%X{userEmail}]
+                    [ip=%X{ip}] %c{1} - %m%n
+                </Pattern>
+            </PatternLayout>
+
+            <Policies>
+                <!-- RollingFileAppender rotește logul când ajunge la 10MB pentru a optimiza spatiul utilizat -->
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <!-- Păstrează maxim 10 fișiere arhivate -->
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <!-- === LOGGERS === -->
+    <Loggers>
+        <!-- Hibernate SQL logs (debug doar în dev, !!! de dezactivat pe prod) -->
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+
+        <!-- Spring Security logs -->
+        <Logger name="org.springframework.security" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+
+        <!-- Rocman candidate module -->
+        <Logger name="org.rocman.candidate" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Logger>
+
+        <!-- Root logger -->
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
