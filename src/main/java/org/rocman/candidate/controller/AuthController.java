@@ -6,8 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.rocman.candidate.dtos.CandidateRegistrationDTO;
 import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.entities.PasswordResetToken;
@@ -51,8 +49,14 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<Object> register(@Valid @RequestBody CandidateRegistrationDTO dto, BindingResult result) {
         if (result.hasErrors()) {
-            log.warn("Registration failed | reason=validation errors | email={} | timestamp={}",
-                    dto.getEmail(), LocalDateTime.now());
+            result.getFieldErrors().forEach(error ->
+
+                    log.warn("Validation error | field={} | message={} | email={} | timestamp={}",
+                            error.getField(),
+                            error.getDefaultMessage(),
+                            dto.getEmail(),
+                            LocalDateTime.now())
+            );
             return ResponseEntity.badRequest().body(result.getAllErrors());
         }
 
@@ -63,6 +67,11 @@ public class AuthController {
             log.warn("Registration failed | reason={} | email={} | timestamp={}",
                     e.getMessage(), dto.getEmail(), LocalDateTime.now());
             return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            log.error("Unexpected error during registration | email={} | timestamp={}",
+                    dto.getEmail(), LocalDateTime.now(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An unexpected error occurred. Please try again later.");
         }
     }
 
@@ -117,12 +126,16 @@ public class AuthController {
                     .countByCandidateAndCreatedAtAfter(candidate, oneHourAgo);
 
             if (recentRequests >= 3) {
+                log.warn("Resend verification blocked | reason=too many requests | email={} | requestsLastHour={} | timestamp={}",
+                        email, recentRequests, LocalDateTime.now());
                 return ResponseEntity
                         .status(HttpStatus.TOO_MANY_REQUESTS)
                         .body("You have exceed the limit of 3 emails/ hour. Please try later.");
             }
 
             if (existingToken.getExpiryDate().isAfter(LocalDateTime.now())) {
+                log.warn("Resend verification blocked | reason=valid token still active | email={} | tokenExpiry={} | timestamp={}",
+                        email, existingToken.getExpiryDate(), LocalDateTime.now());
                 return ResponseEntity
                         .badRequest()
                         .body("Please verify your inbox, there is a valid activation link in previous email.");
@@ -209,20 +222,37 @@ public class AuthController {
         return passwordResetTokenRepository.findByToken(token)
                 .map(resetToken -> {
                     if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
-                        log.warn("Password reset failed | reason=expired token | email={} | timestamp={}",
-                                resetToken.getCandidate().getEmail(), LocalDateTime.now());
+                        log.warn("Password reset token verification failed | reason=expired token | email={} | token={} | expiryDate={} | timestamp={}",
+                                resetToken.getCandidate().getEmail(),
+                                token,
+                                resetToken.getExpiryDate(),
+                                LocalDateTime.now());
                         return ResponseEntity.badRequest().body("The token has expired.");
                     }
+                    log.info("Password reset token verified successfully | email={} | token={} | expiryDate={} | timestamp={}",
+                            resetToken.getCandidate().getEmail(),
+                            token,
+                            resetToken.getExpiryDate(),
+                            LocalDateTime.now());
                     return ResponseEntity.ok("Token is valid. You can now reset your password via POST.");
                 })
-                .orElse(ResponseEntity.badRequest().body("Invalid token."));
-    }
+                .orElseGet(() -> {
+                    log.warn("Password reset token verification failed | reason=invalid token | token={} | timestamp={}",
+                            token, LocalDateTime.now());
+                        return ResponseEntity.badRequest().body("Invalid token.");
+                });
+                }
 
     @PostMapping("/reset-password")
     public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestBody String newPassword) {
         return passwordResetTokenRepository.findByToken(token)
                 .map(resetToken -> {
                     if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+                        log.warn("Password reset failed | reason=expired token | email={} | token={} | expiryDate={} | timestamp={}",
+                                resetToken.getCandidate().getEmail(),
+                                token,
+                                resetToken.getExpiryDate(),
+                                LocalDateTime.now());
                         return ResponseEntity.badRequest().body("The token has expired.");
                     }
 

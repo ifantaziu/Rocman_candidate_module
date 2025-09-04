@@ -1,5 +1,6 @@
 package org.rocman.candidate.security;
 
+import lombok.extern.log4j.Log4j2;
 import org.rocman.candidate.services.CandidateDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@Log4j2
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -27,6 +29,7 @@ public class SecurityConfig {
                           CandidateDetailsService candidateDetailsService) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.candidateDetailsService = candidateDetailsService;
+        log.info("SecurityConfig initialized with JwtAuthenticationFilter and CandidateDetailsService");
     }
 
     @Bean
