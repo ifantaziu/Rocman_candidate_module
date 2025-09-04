@@ -32,6 +32,8 @@ public class CandidateService {
 
     public Candidate registerCandidate(CandidateRegistrationDTO dto) {
         if (candidateRepository.findByEmail(dto.getEmail()).isPresent()) {
+            log.warn("Registration validation failed | reason=Email already registered | email={} | timestamp={}",
+                    dto.getEmail(), LocalDateTime.now());
             throw new IllegalArgumentException("Email already registered");
         }
 
@@ -40,6 +42,8 @@ public class CandidateService {
             Phonenumber.PhoneNumber parsed = PhoneNumberUtil.getInstance().parse(fullNumber, null);
 
             if (!PhoneNumberUtil.getInstance().isValidNumber(parsed)) {
+                log.warn("Registration validation failed | reason=Invalid phone number | email={} | timestamp={}",
+                        dto.getEmail(), LocalDateTime.now());
                 throw new IllegalArgumentException("Invalid phone number");
             }
 
@@ -56,6 +60,9 @@ public class CandidateService {
 
             candidateRepository.save(candidate);
 
+            log.debug("DB operations | action= Register user | entity=Candidate | userId={} | email={} | timestamp={}",
+                    candidate.getId(), candidate.getEmail(), LocalDateTime.now());
+
             String token = UUID.randomUUID().toString();
             VerificationToken verificationToken = new VerificationToken();
             verificationToken.setCandidate(candidate);
@@ -70,7 +77,13 @@ public class CandidateService {
             return candidate;
 
         } catch (NumberParseException e) {
+            log.warn("Registration validation failed | reason=Phone number format is invalid | email={} | timestamp={}",
+                    dto.getEmail(), LocalDateTime.now(), e);
             throw new IllegalArgumentException("Phone number format is invalid");
+        } catch (Exception e) {
+            log.error("Unexpected error in registerCandidate | email={} | timestamp={}",
+                    dto.getEmail(), LocalDateTime.now(), e);
+            throw new RuntimeException("Internal server error");
         }
     }
 
