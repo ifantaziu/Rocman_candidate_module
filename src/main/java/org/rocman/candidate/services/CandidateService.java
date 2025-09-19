@@ -3,16 +3,18 @@ package org.rocman.candidate.services;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
+import jakarta.persistence.EntityNotFoundException;
 import org.apache.tika.Tika;
+import org.rocman.candidate.dtos.CandidateProfileDTO;
 import org.rocman.candidate.dtos.CandidateRegistrationDTO;
-import org.rocman.candidate.entities.Candidate;
-import org.rocman.candidate.entities.VerificationToken;
-import org.rocman.candidate.repositories.CandidateRepository;
-import org.rocman.candidate.repositories.VerificationTokenRepository;
+import org.rocman.candidate.entities.*;
+import org.rocman.candidate.repositories.*;
+import org.rocman.candidate.utils.CVDataExtractor;
 import org.rocman.candidate.utils.CVParserUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -41,6 +43,10 @@ public class CandidateService {
             "application/rtf",
             "text/plain"
     );
+    private final EducationRepository educationRepository;
+    private final ExperienceRepository experienceRepository;
+    private final SkillRepository skillRepository;
+    private final LanguageRepository languageRepository;
 
     public Candidate registerCandidate(CandidateRegistrationDTO dto) {
         if (candidateRepository.findByEmail(dto.getEmail()).isPresent()) {
@@ -154,6 +160,165 @@ public class CandidateService {
 
     private boolean isAllowedType(String mimeType) {
         return mimeType != null && ALLOWED_MIME_TYPES.contains(mimeType);
+    }
+
+    @Transactional(readOnly = true)
+    public CandidateProfileDTO getCandidateProfile(Long id) {
+        log.info("Loading candidate profile | candidateId={}", id);
+
+        Candidate candidate = candidateRepository.findByIdWithAllRelations(id)
+                .orElseThrow(() -> {
+                    log.warn("Candidate not found | candidateId={}", id);
+                    return new EntityNotFoundException("Candidate not found");
+                });
+
+        CandidateProfileDTO dto = new CandidateProfileDTO();
+        dto.setId(candidate.getId());
+        dto.setEmail(candidate.getEmail());
+        dto.setPhone(candidate.getPhoneNumber());
+        dto.setFirstName(candidate.getFirstName());
+        dto.setLastName(candidate.getLastName());
+        String address = CVDataExtractor.extractAddress(candidate.getCvText());
+        dto.setAddress(address != null ? address : "");
+
+        dto.setEducation(candidate.getEducations().stream().map(e -> {
+            CandidateProfileDTO.EducationDTO edto = new CandidateProfileDTO.EducationDTO();
+            edto.setId(e.getId());
+            edto.setLevel(e.getLevel());
+            edto.setInstitution(e.getInstitution());
+            edto.setPeriod(e.getPeriod());
+            return edto;
+        }).toList());
+
+        dto.setExperience(candidate.getExperiences().stream().map(e -> {
+            CandidateProfileDTO.ExperienceDTO exdto = new CandidateProfileDTO.ExperienceDTO();
+            exdto.setId(e.getId());
+            exdto.setTitle(e.getTitle());
+            exdto.setCompany(e.getCompany());
+            exdto.setPeriod(e.getPeriod());
+            return exdto;
+        }).toList());
+
+        dto.setSkills(candidate.getSkills().stream().map(s -> {
+            CandidateProfileDTO.SkillDTO sdto = new CandidateProfileDTO.SkillDTO();
+            sdto.setId(s.getId());
+            sdto.setName(s.getName());
+            return sdto;
+        }).toList());
+
+        dto.setLanguages(candidate.getLanguages().stream().map(l -> {
+            CandidateProfileDTO.LanguageDTO ldto = new CandidateProfileDTO.LanguageDTO();
+            ldto.setId(l.getId());
+            ldto.setLanguage(l.getLanguage());
+            ldto.setLevel(l.getLevel());
+            return ldto;
+        }).toList());
+
+        log.info("Profile fetched successfully | candidateId={}", id);
+        return dto;
+    }
+
+    @Transactional
+    public CandidateProfileDTO updateCandidateProfile(Long id, CandidateProfileDTO dto) {
+        log.info("Updating candidate main profile | candidateId={}", id);
+
+        Candidate candidate = candidateRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Candidate not found | candidateId={}", id);
+                    return new EntityNotFoundException("Candidate not found");
+                });
+
+        if (dto.getEmail() != null) candidate.setEmail(dto.getEmail());
+        if (dto.getPhone() != null) candidate.setPhoneNumber(dto.getPhone());
+        if (dto.getLastName() != null) candidate.setLastName(dto.getLastName());
+        if (dto.getAddress() != null) candidate.setCvText(updateCvTextWithAddress(candidate.getCvText(), dto.getAddress()));
+
+        candidateRepository.save(candidate);
+        log.info("Candidate main profile updated successfully | candidateId={}", id);
+
+        return getCandidateProfile(id);
+    }
+
+    private String updateCvTextWithAddress(String cvText, String newAddress) {
+        if (cvText == null) return newAddress;
+        return cvText + "\nAddress: " + newAddress;
+    }
+
+    @Transactional
+    public CandidateProfileDTO.EducationDTO updateEducation(Long id, CandidateProfileDTO.EducationDTO dto) {
+        log.info("Updating Education | educationId={}", id);
+
+        Education education = educationRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Education not found | educationId={}", id);
+                    return new EntityNotFoundException("Education not found");
+                });
+
+        education.setLevel(dto.getLevel());
+        education.setInstitution(dto.getInstitution());
+        education.setPeriod(dto.getPeriod());
+        educationRepository.save(education);
+
+        log.info("Education updated successfully | educationId={}", id);
+        dto.setId(education.getId());
+        return dto;
+    }
+
+    @Transactional
+    public CandidateProfileDTO.ExperienceDTO updateExperience(Long id, CandidateProfileDTO.ExperienceDTO dto) {
+        log.info("Updating Experience | experienceId={}", id);
+
+        Experience experience = experienceRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Experience not found | experienceId={}", id);
+                    return new EntityNotFoundException("Experience not found");
+                });
+
+        experience.setTitle(dto.getTitle());
+        experience.setCompany(dto.getCompany());
+        experience.setPeriod(dto.getPeriod());
+        experienceRepository.save(experience);
+
+        log.info("Experience updated successfully | experienceId={}", id);
+        dto.setId(experience.getId());
+        return dto;
+    }
+
+    @Transactional
+    public CandidateProfileDTO.SkillDTO updateSkill(Long id, CandidateProfileDTO.SkillDTO dto) {
+        log.info("Updating Skill | skillId={}", id);
+
+        Skill skill = skillRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Skill not found | skillId={}", id);
+                    return new EntityNotFoundException("Skill not found");
+                });
+
+        skill.setName(dto.getName());
+        skillRepository.save(skill);
+
+        log.info("Skill updated successfully | skillId={}", id);
+        dto.setId(skill.getId());
+        return dto;
+    }
+
+    @Transactional
+    public CandidateProfileDTO.LanguageDTO updateLanguage(Long id, CandidateProfileDTO.LanguageDTO dto) {
+        log.info("Updating Language | languageId={}", id);
+
+        Language language = languageRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.warn("Language not found | languageId={}", id);
+                    return new EntityNotFoundException("Language not found");
+                });
+
+        language.setLanguage(dto.getLanguage());
+        language.setLevel(dto.getLevel());
+        languageRepository.save(language);
+
+        log.info("Language updated successfully | languageId={}", id);
+        dto.setId(language.getId());
+        return dto;
     }
 
 //    public Optional<Candidate> getCandidateProfile(Long candidateId) {

@@ -17,7 +17,7 @@ public class CandidateRegistrationDTO {
 
     @NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password must have at least 8 characters")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*]).+$",
+    @Pattern(regexp = "^(?=.*[A-ZА-ЯЁ])(?=.*\\d)(?=.*[!@#$%^&*]).+$",
             message = "Password must contain at least one uppercase letter, one digit, and one special character")
     private String password;
 

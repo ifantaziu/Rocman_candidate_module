@@ -35,15 +35,28 @@ public class Candidate implements UserDetails {
     @Column(nullable = false, unique = true)
     private String phoneNumber;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String address;
+
     @Column(nullable = false)
     private boolean enabled = false;
 
-    @Lob
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Education> educations;
+
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Experience> experiences;
+
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Skill> skills;
+
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Language> languages;
+
     @Column(name = "cv_file")
     private byte[] cvFile;
 
-    @Lob
-    @Column(name = "cv_text")
+    @Column(name = "cv_text", columnDefinition = "TEXT")
     private String cvText;
 
     @Override

@@ -1,6 +1,8 @@
 package org.rocman.candidate.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.rocman.candidate.dtos.CandidateProfileDTO;
+import org.rocman.candidate.dtos.CandidateRegistrationDTO;
 import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.services.CandidateService;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +29,49 @@ public class CandidateController {
             return ResponseEntity.ok(candidate);
         } catch (Exception e) {
             log.error("Error uploading CV for email={}: {}", email, e.getMessage(), e);
-            return ResponseEntity.badRequest().body("Error uploading CV. Allowed types: PDF, DOC, DOCX, ODT, RTF, TXT. Maximum size: 10 MB." );
+            return ResponseEntity.badRequest().body("Error uploading CV: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/{id}/profile")
+    public ResponseEntity<CandidateProfileDTO> getCandidateProfile(@PathVariable Long id) {
+        return ResponseEntity.ok(candidateService.getCandidateProfile(id));
+    }
+    @PutMapping("/edit/profile/{id}")
+    public ResponseEntity<CandidateProfileDTO> updateCandidateProfile(
+            @PathVariable Long id,
+            @RequestBody CandidateProfileDTO dto) {
+        log.info("Request PUT update main profile | candidateId={}", id);
+        CandidateProfileDTO updatedDto = candidateService.updateCandidateProfile(id, dto);
+        return ResponseEntity.ok(updatedDto);
+    }
+
+    @PutMapping("/edit/educations/{id}")
+    public ResponseEntity<CandidateProfileDTO.EducationDTO> updateEducation(
+            @PathVariable Long id,
+            @RequestBody CandidateProfileDTO.EducationDTO dto) {
+        return ResponseEntity.ok(candidateService.updateEducation(id, dto));
+    }
+
+    @PutMapping("/edit/experiences/{id}")
+    public ResponseEntity<CandidateProfileDTO.ExperienceDTO> updateExperience(
+            @PathVariable Long id,
+            @RequestBody CandidateProfileDTO.ExperienceDTO dto) {
+        return ResponseEntity.ok(candidateService.updateExperience(id, dto));
+    }
+
+    @PutMapping("/edit/skills/{id}")
+    public ResponseEntity<CandidateProfileDTO.SkillDTO> updateSkill(
+            @PathVariable Long id,
+            @RequestBody CandidateProfileDTO.SkillDTO dto) {
+        return ResponseEntity.ok(candidateService.updateSkill(id, dto));
+    }
+
+    @PutMapping("/edit/languages/{id}")
+    public ResponseEntity<CandidateProfileDTO.LanguageDTO> updateLanguage(
+            @PathVariable Long id,
+            @RequestBody CandidateProfileDTO.LanguageDTO dto) {
+        return ResponseEntity.ok(candidateService.updateLanguage(id, dto));
     }
 
 //    @GetMapping("/{id}")
