@@ -3,11 +3,15 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "candidates")
@@ -42,16 +46,20 @@ public class Candidate implements UserDetails {
     private boolean enabled = false;
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Education> educations;
+    @Fetch(FetchMode.SUBSELECT)
+    private Set<Education> educations= new HashSet<>();
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Experience> experiences;
+    @Fetch(FetchMode.SUBSELECT)
+    private Set<Experience> experiences= new HashSet<>();
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Skill> skills;
+    @Fetch(FetchMode.SUBSELECT)
+    private Set<Skill> skills= new HashSet<>();
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Language> languages;
+    @Fetch(FetchMode.SUBSELECT)
+    private Set<Language> languages= new HashSet<>();
 
     @Column(name = "cv_file")
     private byte[] cvFile;
