@@ -8,10 +8,12 @@ import org.apache.tika.Tika;
 import org.rocman.candidate.dtos.CandidateProfileDTO;
 import org.rocman.candidate.dtos.CandidateRegistrationDTO;
 import org.rocman.candidate.entities.*;
+import org.rocman.candidate.mapper.CandidateMapper;
 import org.rocman.candidate.repositories.*;
 import org.rocman.candidate.utils.CVDataExtractor;
 import org.rocman.candidate.utils.CVParserUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,6 +49,7 @@ public class CandidateService {
     private final ExperienceRepository experienceRepository;
     private final SkillRepository skillRepository;
     private final LanguageRepository languageRepository;
+    private final CandidateMapper candidateMapper;
 
     public Candidate registerCandidate(CandidateRegistrationDTO dto) {
         if (candidateRepository.findByEmail(dto.getEmail()).isPresent()) {
@@ -112,55 +115,25 @@ public class CandidateService {
 //    }
 
     @Transactional
-    public Candidate uploadCVByEmail(String email, MultipartFile file) throws IOException {
+    public CandidateProfileDTO uploadCVByEmail(String email, MultipartFile file) throws IOException {
         log.info("Starting CV upload for candidate with email={}", email);
+
         Candidate candidate = candidateRepository.findByEmail(email)
-                .orElseThrow(() -> {
-                    log.warn("Candidate not found for email={}", email);
-                    return new RuntimeException("Candidate not found");
-                });
+                .orElseThrow(() -> new RuntimeException("Candidate not found"));
 
         if (file.getSize() > MAX_FILE_SIZE) {
-            log.warn("File too large (Maximum allowed size is 10 MB): {} bytes (email={})", file.getSize(), email);
             throw new RuntimeException("File too large. Maximum allowed size is 10 MB.");
         }
 
-        String contentType = file.getContentType();
-        String detectedType = tika.detect(file.getInputStream());
-
-        log.info("File contentType from request: {}", contentType);
-        log.info("File type detected by Tika: {}", detectedType);
-
-        if (!isAllowedType(contentType) && !isAllowedType(detectedType)) {
-            log.warn("Unsupported file type: requestType={}, detectedType={} (email={})",
-                    contentType, detectedType, email);
-            throw new RuntimeException("Unsupported file type. Allowed types are: PDF, DOC, DOCX, ODT, RTF, TXT. " + detectedType +
-                    "Maximum size: 10 MB.");
-        }
-
-        log.info("File validation passed for email={}, type={}, size={} bytes",
-                email, detectedType, file.getSize());
-
-        String extractedText;
-        try {
-            extractedText = CVParserUtil.extractText(file.getInputStream());
-            log.info("Successfully extracted text from CV for email={}", email);
-        } catch (Exception e) {
-            log.error("Failed to parse CV for email={}. Error: {}", email, e.getMessage(), e);
-            throw new RuntimeException("Could not process the uploaded CV.");
-        }
+        String extractedText = CVParserUtil.extractText(file.getInputStream());
         candidate.setCvFile(file.getBytes());
         candidate.setCvText(extractedText);
 
         CandidateProfileDTO parsedDto = CVDataExtractor.extractFields(extractedText);
-        String extractedAddress = parsedDto.getAddress();
-        if (extractedAddress != null && !extractedAddress.isBlank()) {
-            candidate.setAddress(extractedAddress);
-            log.debug("Extracted address set in candidate: {}", extractedAddress);
+
+        if (parsedDto.getAddress() != null && !parsedDto.getAddress().isBlank()) {
+            candidate.setAddress(parsedDto.getAddress());
         }
-
-        log.info("Starting persistence of extracted CV fields for email={}", email);
-
         parsedDto.getEducation().forEach(e -> {
             Education edu = new Education();
             edu.setCandidate(candidate);
@@ -168,7 +141,6 @@ public class CandidateService {
             edu.setInstitution(e.getInstitution());
             edu.setPeriod(e.getPeriod());
             candidate.getEducations().add(edu);
-            log.debug("Added education: {} | {} | {}", e.getLevel(), e.getInstitution(), e.getPeriod());
         });
 
         parsedDto.getExperience().forEach(ex -> {
@@ -178,7 +150,6 @@ public class CandidateService {
             exp.setCompany(ex.getCompany());
             exp.setPeriod(ex.getPeriod());
             candidate.getExperiences().add(exp);
-            log.debug("Added experience: {} | {} | {}", ex.getTitle(), ex.getCompany(), ex.getPeriod());
         });
 
         parsedDto.getSkills().forEach(s -> {
@@ -186,7 +157,6 @@ public class CandidateService {
             skill.setCandidate(candidate);
             skill.setName(s.getName());
             candidate.getSkills().add(skill);
-            log.debug("Added skill: {}", s.getName());
         });
 
         parsedDto.getLanguages().forEach(l -> {
@@ -195,12 +165,31 @@ public class CandidateService {
             lang.setLanguage(l.getLanguage());
             lang.setLevel(l.getLevel());
             candidate.getLanguages().add(lang);
-            log.debug("Added language: {} | {}", l.getLanguage(), l.getLevel());
         });
+
         Candidate savedCandidate = candidateRepository.save(candidate);
 
+        CandidateProfileDTO dto = candidateMapper.toDto(savedCandidate);
+
+        dto.setEducation(savedCandidate.getEducations().stream()
+                .map(candidateMapper::educationToDto)
+                .toList());
+
+        dto.setExperience(savedCandidate.getExperiences().stream()
+                .map(candidateMapper::experienceToDto)
+                .toList());
+
+        dto.setSkills(savedCandidate.getSkills().stream()
+                .map(candidateMapper::skillToDto)
+                .toList());
+
+        dto.setLanguages(savedCandidate.getLanguages().stream()
+                .map(candidateMapper::languageToDto)
+                .toList());
+
         log.info("CV upload and persistence completed successfully for email={}", email);
-        return savedCandidate;
+
+        return dto;
     }
 
     private boolean isAllowedType(String mimeType) {
@@ -276,7 +265,8 @@ public class CandidateService {
         if (dto.getEmail() != null) candidate.setEmail(dto.getEmail());
         if (dto.getPhone() != null) candidate.setPhoneNumber(dto.getPhone());
         if (dto.getLastName() != null) candidate.setLastName(dto.getLastName());
-        if (dto.getAddress() != null) candidate.setCvText(updateCvTextWithAddress(candidate.getCvText(), dto.getAddress()));
+        if (dto.getAddress() != null)
+            candidate.setCvText(updateCvTextWithAddress(candidate.getCvText(), dto.getAddress()));
 
         candidateRepository.save(candidate);
         log.info("Candidate main profile updated successfully | candidateId={}", id);

@@ -2,8 +2,6 @@ package org.rocman.candidate.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.rocman.candidate.dtos.CandidateProfileDTO;
-import org.rocman.candidate.dtos.CandidateRegistrationDTO;
-import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.services.CandidateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,23 +18,28 @@ public class CandidateController {
     private final CandidateService candidateService;
 
     @PostMapping("/upload-cv")
-    public ResponseEntity<?> uploadCV(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<CandidateProfileDTO> uploadCV(@RequestParam("file") MultipartFile file) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         log.info("Received CV upload request from email={}", email);
+
         try {
-            Candidate candidate = candidateService.uploadCVByEmail(email, file);
+            CandidateProfileDTO dto = candidateService.uploadCVByEmail(email, file);
             log.info("CV upload successful for email={}", email);
-            return ResponseEntity.ok(candidate);
+            return ResponseEntity.ok(dto);
         } catch (Exception e) {
             log.error("Error uploading CV for email={}: {}", email, e.getMessage(), e);
-            return ResponseEntity.badRequest().body("Error uploading CV: " + e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    public record ErrorResponse(String message) {
     }
 
     @GetMapping("/{id}/profile")
     public ResponseEntity<CandidateProfileDTO> getCandidateProfile(@PathVariable Long id) {
         return ResponseEntity.ok(candidateService.getCandidateProfile(id));
     }
+
     @PutMapping("/edit/profile/{id}")
     public ResponseEntity<CandidateProfileDTO> updateCandidateProfile(
             @PathVariable Long id,
