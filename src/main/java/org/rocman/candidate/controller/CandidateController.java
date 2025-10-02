@@ -24,7 +24,6 @@ public class CandidateController {
 
         try {
             CandidateProfileDTO dto = candidateService.uploadCVByEmail(email, file);
-            log.info("CV upload successful for email={}", email);
             return ResponseEntity.ok(dto);
         } catch (Exception e) {
             log.error("Error uploading CV for email={}: {}", email, e.getMessage(), e);
@@ -46,6 +45,7 @@ public class CandidateController {
             @RequestBody CandidateProfileDTO dto) {
         log.info("Request PUT update main profile | candidateId={}", id);
         CandidateProfileDTO updatedDto = candidateService.updateCandidateProfile(id, dto);
+        log.info("Profile updated successfully | candidateId={}", id);
         return ResponseEntity.ok(updatedDto);
     }
 
@@ -53,6 +53,7 @@ public class CandidateController {
     public ResponseEntity<CandidateProfileDTO.EducationDTO> updateEducation(
             @PathVariable Long id,
             @RequestBody CandidateProfileDTO.EducationDTO dto) {
+        log.info("Request PUT update education | educationId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateEducation(id, dto));
     }
 
@@ -60,6 +61,7 @@ public class CandidateController {
     public ResponseEntity<CandidateProfileDTO.ExperienceDTO> updateExperience(
             @PathVariable Long id,
             @RequestBody CandidateProfileDTO.ExperienceDTO dto) {
+        log.info("Request PUT update experience | experienceId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateExperience(id, dto));
     }
 
@@ -67,6 +69,7 @@ public class CandidateController {
     public ResponseEntity<CandidateProfileDTO.SkillDTO> updateSkill(
             @PathVariable Long id,
             @RequestBody CandidateProfileDTO.SkillDTO dto) {
+        log.info("Request PUT update skill | skillId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateSkill(id, dto));
     }
 
@@ -74,6 +77,7 @@ public class CandidateController {
     public ResponseEntity<CandidateProfileDTO.LanguageDTO> updateLanguage(
             @PathVariable Long id,
             @RequestBody CandidateProfileDTO.LanguageDTO dto) {
+        log.info("Request PUT update language | languageId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateLanguage(id, dto));
     }
 

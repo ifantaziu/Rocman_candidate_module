@@ -10,10 +10,10 @@ import org.rocman.candidate.dtos.CandidateRegistrationDTO;
 import org.rocman.candidate.entities.*;
 import org.rocman.candidate.mapper.CandidateMapper;
 import org.rocman.candidate.repositories.*;
-import org.rocman.candidate.utils.CVDataExtractor;
+
 import org.rocman.candidate.utils.CVParserUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +50,7 @@ public class CandidateService {
     private final SkillRepository skillRepository;
     private final LanguageRepository languageRepository;
     private final CandidateMapper candidateMapper;
+    private final CVLlmDataExtractor cvLlmDataExtractor;
 
     public Candidate registerCandidate(CandidateRegistrationDTO dto) {
         if (candidateRepository.findByEmail(dto.getEmail()).isPresent()) {
@@ -124,72 +125,55 @@ public class CandidateService {
         if (file.getSize() > MAX_FILE_SIZE) {
             throw new RuntimeException("File too large. Maximum allowed size is 10 MB.");
         }
+        String mimeType = tika.detect(file.getInputStream());
 
+        if (!isAllowedType(mimeType)) {
+            throw new RuntimeException("Invalid file type: " + mimeType);
+        }
         String extractedText = CVParserUtil.extractText(file.getInputStream());
         candidate.setCvFile(file.getBytes());
         candidate.setCvText(extractedText);
 
-        CandidateProfileDTO parsedDto = CVDataExtractor.extractFields(extractedText);
+        CandidateProfileDTO parsedDto = cvLlmDataExtractor.extractCandidateProfile(extractedText);
+        log.debug("CV fields extracted | email={} | parsedDto={}", email, parsedDto);
+        System.out.println("DEBUG DTO: " + parsedDto);
 
         if (parsedDto.getAddress() != null && !parsedDto.getAddress().isBlank()) {
             candidate.setAddress(parsedDto.getAddress());
         }
         parsedDto.getEducation().forEach(e -> {
-            Education edu = new Education();
+            Education edu = candidateMapper.educationDtoToEntity(e);
             edu.setCandidate(candidate);
-            edu.setLevel(e.getLevel());
-            edu.setInstitution(e.getInstitution());
-            edu.setPeriod(e.getPeriod());
             candidate.getEducations().add(edu);
+            log.debug("Added education | candidateEmail={} | education={}", email, edu);
         });
 
         parsedDto.getExperience().forEach(ex -> {
-            Experience exp = new Experience();
+            Experience exp = candidateMapper.experienceDtoToEntity(ex);
             exp.setCandidate(candidate);
-            exp.setTitle(ex.getTitle());
-            exp.setCompany(ex.getCompany());
-            exp.setPeriod(ex.getPeriod());
             candidate.getExperiences().add(exp);
+            log.debug("Added experience | candidateEmail={} | experience={}", email, exp);
         });
 
         parsedDto.getSkills().forEach(s -> {
-            Skill skill = new Skill();
+            Skill skill = candidateMapper.skillDtoToEntity(s);
             skill.setCandidate(candidate);
-            skill.setName(s.getName());
             candidate.getSkills().add(skill);
+            log.debug("Added skill | candidateEmail={} | skill={}", email, skill);
         });
 
         parsedDto.getLanguages().forEach(l -> {
-            Language lang = new Language();
+            Language lang = candidateMapper.languageDtoToEntity(l);
             lang.setCandidate(candidate);
-            lang.setLanguage(l.getLanguage());
-            lang.setLevel(l.getLevel());
             candidate.getLanguages().add(lang);
+            log.debug("Added language | candidateEmail={} | language={}", email, lang);
         });
 
         Candidate savedCandidate = candidateRepository.save(candidate);
 
-        CandidateProfileDTO dto = candidateMapper.toDto(savedCandidate);
-
-        dto.setEducation(savedCandidate.getEducations().stream()
-                .map(candidateMapper::educationToDto)
-                .toList());
-
-        dto.setExperience(savedCandidate.getExperiences().stream()
-                .map(candidateMapper::experienceToDto)
-                .toList());
-
-        dto.setSkills(savedCandidate.getSkills().stream()
-                .map(candidateMapper::skillToDto)
-                .toList());
-
-        dto.setLanguages(savedCandidate.getLanguages().stream()
-                .map(candidateMapper::languageToDto)
-                .toList());
-
         log.info("CV upload and persistence completed successfully for email={}", email);
 
-        return dto;
+        return candidateMapper.toDto(savedCandidate);
     }
 
     private boolean isAllowedType(String mimeType) {
@@ -206,50 +190,8 @@ public class CandidateService {
                     return new EntityNotFoundException("Candidate not found");
                 });
 
-        CandidateProfileDTO dto = new CandidateProfileDTO();
-        dto.setId(candidate.getId());
-        dto.setEmail(candidate.getEmail());
-        dto.setPhone(candidate.getPhoneNumber());
-        dto.setFirstName(candidate.getFirstName());
-        dto.setLastName(candidate.getLastName());
-        String address = CVDataExtractor.extractAddress(candidate.getCvText());
-        dto.setAddress(address != null ? address : "");
-
-        dto.setEducation(candidate.getEducations().stream().map(e -> {
-            CandidateProfileDTO.EducationDTO edto = new CandidateProfileDTO.EducationDTO();
-            edto.setId(e.getId());
-            edto.setLevel(e.getLevel());
-            edto.setInstitution(e.getInstitution());
-            edto.setPeriod(e.getPeriod());
-            return edto;
-        }).toList());
-
-        dto.setExperience(candidate.getExperiences().stream().map(e -> {
-            CandidateProfileDTO.ExperienceDTO exdto = new CandidateProfileDTO.ExperienceDTO();
-            exdto.setId(e.getId());
-            exdto.setTitle(e.getTitle());
-            exdto.setCompany(e.getCompany());
-            exdto.setPeriod(e.getPeriod());
-            return exdto;
-        }).toList());
-
-        dto.setSkills(candidate.getSkills().stream().map(s -> {
-            CandidateProfileDTO.SkillDTO sdto = new CandidateProfileDTO.SkillDTO();
-            sdto.setId(s.getId());
-            sdto.setName(s.getName());
-            return sdto;
-        }).toList());
-
-        dto.setLanguages(candidate.getLanguages().stream().map(l -> {
-            CandidateProfileDTO.LanguageDTO ldto = new CandidateProfileDTO.LanguageDTO();
-            ldto.setId(l.getId());
-            ldto.setLanguage(l.getLanguage());
-            ldto.setLevel(l.getLevel());
-            return ldto;
-        }).toList());
-
         log.info("Profile fetched successfully | candidateId={}", id);
-        return dto;
+        return candidateMapper.toDto(candidate);
     }
 
     @Transactional
@@ -295,8 +237,7 @@ public class CandidateService {
         educationRepository.save(education);
 
         log.info("Education updated successfully | educationId={}", id);
-        dto.setId(education.getId());
-        return dto;
+        return candidateMapper.educationToDto(education);
     }
 
     @Transactional
@@ -315,8 +256,7 @@ public class CandidateService {
         experienceRepository.save(experience);
 
         log.info("Experience updated successfully | experienceId={}", id);
-        dto.setId(experience.getId());
-        return dto;
+        return candidateMapper.experienceToDto(experience);
     }
 
     @Transactional
@@ -333,8 +273,7 @@ public class CandidateService {
         skillRepository.save(skill);
 
         log.info("Skill updated successfully | skillId={}", id);
-        dto.setId(skill.getId());
-        return dto;
+        return candidateMapper.skillToDto(skill);
     }
 
     @Transactional
@@ -352,8 +291,7 @@ public class CandidateService {
         languageRepository.save(language);
 
         log.info("Language updated successfully | languageId={}", id);
-        dto.setId(language.getId());
-        return dto;
+        return candidateMapper.languageToDto(language);
     }
 
 //    public Optional<Candidate> getCandidateProfile(Long candidateId) {

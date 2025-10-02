@@ -28,7 +28,8 @@
     </scm>
     <properties>
         <java.version>17</java.version>
-        <spring-ai.version>1.0.0</spring-ai.version>
+        <spring-boot.version>3.3.4</spring-boot.version>
+        <spring-ai.version>1.0.0-M6</spring-ai.version>
     </properties>
     <dependencies>
         <dependency>
@@ -190,6 +191,15 @@
             <version>0.2.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.theokanning.openai-gpt3-java</groupId>
+            <artifactId>client</artifactId>
+            <version>0.17.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -214,14 +224,14 @@
                     <target>17</target>
                     <annotationProcessorPaths>
                         <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>1.6.3</version>
-                        </path>
-                        <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>1.18.28</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>1.6.3</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
