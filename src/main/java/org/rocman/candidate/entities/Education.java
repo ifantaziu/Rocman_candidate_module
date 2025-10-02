@@ -3,8 +3,6 @@ package org.rocman.candidate.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "educations")
 @Data
@@ -13,6 +11,7 @@ import java.util.Objects;
 @Builder
 @ToString(exclude = "candidate")
 public class Education {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,15 +27,13 @@ public class Education {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Education that)) return false;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(level, that.level) &&
-                Objects.equals(institution, that.institution) &&
-                Objects.equals(period, that.period);
+        if (!(o instanceof Education)) return false;
+        Education other = (Education) o;
+        return id != null && id.equals(other.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, level, institution, period);
+        return 31;
     }
 }

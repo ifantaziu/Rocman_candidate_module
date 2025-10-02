@@ -1,15 +1,12 @@
 package org.rocman.candidate.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Mapping;
 import org.rocman.candidate.dtos.CandidateProfileDTO;
 import org.rocman.candidate.entities.*;
 
 @Mapper(componentModel = "spring")
 public interface CandidateMapper {
-
-    CandidateMapper INSTANCE = Mappers.getMapper(CandidateMapper.class);
-
 
     CandidateProfileDTO toDto(Candidate candidate);
 
@@ -21,14 +18,22 @@ public interface CandidateMapper {
 
     CandidateProfileDTO.LanguageDTO languageToDto(Language language);
 
-
     Candidate toEntity(CandidateProfileDTO dto);
 
+    @Mapping(source = "level", target = "level")
+    @Mapping(source = "institution", target = "institution")
+    @Mapping(source = "period", target = "period")
     Education educationDtoToEntity(CandidateProfileDTO.EducationDTO dto);
 
+    @Mapping(source = "title", target = "title")
+    @Mapping(source = "company", target = "company")
+    @Mapping(source = "period", target = "period")
     Experience experienceDtoToEntity(CandidateProfileDTO.ExperienceDTO dto);
 
+    @Mapping(source = "name", target = "name")
     Skill skillDtoToEntity(CandidateProfileDTO.SkillDTO dto);
 
+    @Mapping(source = "language", target = "language")
+    @Mapping(source = "level", target = "level")
     Language languageDtoToEntity(CandidateProfileDTO.LanguageDTO dto);
 }

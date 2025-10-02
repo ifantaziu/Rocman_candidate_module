@@ -28,15 +28,13 @@ public class Experience {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Experience that)) return false;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(company, that.company) &&
-                Objects.equals(period, that.period);
+        if (!(o instanceof Experience)) return false;
+        Experience other = (Experience) o;
+        return id != null && id.equals(other.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, company, period);
+        return 31;
     }
 }

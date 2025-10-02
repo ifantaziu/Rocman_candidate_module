@@ -13,6 +13,7 @@ import java.util.Objects;
 @Builder
 @ToString(exclude = "candidate")
 public class Language {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,14 +28,13 @@ public class Language {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Language that)) return false;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(language, that.language) &&
-                Objects.equals(level, that.level);
+        if (!(o instanceof Language)) return false;
+        Language other = (Language) o;
+        return id != null && id.equals(other.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, language, level);
+        return 31;
     }
 }

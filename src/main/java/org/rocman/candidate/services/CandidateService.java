@@ -125,13 +125,18 @@ public class CandidateService {
         if (file.getSize() > MAX_FILE_SIZE) {
             throw new RuntimeException("File too large. Maximum allowed size is 10 MB.");
         }
+        String mimeType = tika.detect(file.getInputStream());
 
+        if (!isAllowedType(mimeType)) {
+            throw new RuntimeException("Invalid file type: " + mimeType);
+        }
         String extractedText = CVParserUtil.extractText(file.getInputStream());
         candidate.setCvFile(file.getBytes());
         candidate.setCvText(extractedText);
 
         CandidateProfileDTO parsedDto = cvLlmDataExtractor.extractCandidateProfile(extractedText);
         log.debug("CV fields extracted | email={} | parsedDto={}", email, parsedDto);
+        System.out.println("DEBUG DTO: " + parsedDto);
 
         if (parsedDto.getAddress() != null && !parsedDto.getAddress().isBlank()) {
             candidate.setAddress(parsedDto.getAddress());

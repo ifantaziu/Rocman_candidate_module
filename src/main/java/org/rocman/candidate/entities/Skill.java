@@ -29,12 +29,13 @@ public class Skill {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Skill skill)) return false;
-        return Objects.equals(id, skill.id) && Objects.equals(name, skill.name);
+        if (!(o instanceof Skill)) return false;
+        Skill other = (Skill) o;
+        return id != null && id.equals(other.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return 31;
     }
 }
