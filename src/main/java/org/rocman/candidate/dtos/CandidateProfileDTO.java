@@ -1,49 +1,34 @@
 package org.rocman.candidate.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class CandidateProfileDTO {
     private Long id;
-    private String email;
-    private String phone;
     private String firstName;
     private String lastName;
+    private String email;
+    private String phoneNumber;
     private String address;
 
-    private List<EducationDTO> education;
-    private List<ExperienceDTO> experience;
-    private List<SkillDTO> skills;
-    private List<LanguageDTO> languages;
+    private List<EducationDTO> educations = new ArrayList<>();
+    private List<ExperienceDTO> experiences = new ArrayList<>();
+    private List<SkillDTO> skills = new ArrayList<>();
+    private List<LanguageDTO> languages = new ArrayList<>();
 
-    @Data
-    public static class EducationDTO {
-        private Long id;
-        private String level;
-        private String institution;
-        private String period;
-    }
-
-    @Data
-    public static class ExperienceDTO {
-        private Long id;
-        private String title;
-        private String company;
-        private String period;
-    }
-
-    @Data
-    public static class SkillDTO {
-        private Long id;
-        private String name;
-    }
-
-    @Data
-    public static class LanguageDTO {
-        private Long id;
-        private String language;
-        private String level;
+    public CandidateProfileDTO(Long id, String firstName, String lastName,
+                               String email, String phoneNumber, String address) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 }

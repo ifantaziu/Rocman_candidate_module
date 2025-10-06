@@ -1,7 +1,7 @@
 package org.rocman.candidate.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.rocman.candidate.dtos.CandidateProfileDTO;
+import org.rocman.candidate.dtos.*;
 import org.rocman.candidate.services.CandidateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,33 +50,33 @@ public class CandidateController {
     }
 
     @PutMapping("/edit/educations/{id}")
-    public ResponseEntity<CandidateProfileDTO.EducationDTO> updateEducation(
+    public ResponseEntity<EducationDTO> updateEducation(
             @PathVariable Long id,
-            @RequestBody CandidateProfileDTO.EducationDTO dto) {
+            @RequestBody EducationDTO dto) {
         log.info("Request PUT update education | educationId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateEducation(id, dto));
     }
 
     @PutMapping("/edit/experiences/{id}")
-    public ResponseEntity<CandidateProfileDTO.ExperienceDTO> updateExperience(
+    public ResponseEntity<ExperienceDTO> updateExperience(
             @PathVariable Long id,
-            @RequestBody CandidateProfileDTO.ExperienceDTO dto) {
+            @RequestBody ExperienceDTO dto) {
         log.info("Request PUT update experience | experienceId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateExperience(id, dto));
     }
 
     @PutMapping("/edit/skills/{id}")
-    public ResponseEntity<CandidateProfileDTO.SkillDTO> updateSkill(
+    public ResponseEntity<SkillDTO> updateSkill(
             @PathVariable Long id,
-            @RequestBody CandidateProfileDTO.SkillDTO dto) {
+            @RequestBody SkillDTO dto) {
         log.info("Request PUT update skill | skillId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateSkill(id, dto));
     }
 
     @PutMapping("/edit/languages/{id}")
-    public ResponseEntity<CandidateProfileDTO.LanguageDTO> updateLanguage(
+    public ResponseEntity<LanguageDTO> updateLanguage(
             @PathVariable Long id,
-            @RequestBody CandidateProfileDTO.LanguageDTO dto) {
+            @RequestBody LanguageDTO dto) {
         log.info("Request PUT update language | languageId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateLanguage(id, dto));
     }

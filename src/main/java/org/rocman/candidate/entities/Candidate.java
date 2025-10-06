@@ -61,9 +61,11 @@ public class Candidate implements UserDetails {
     @Fetch(FetchMode.SUBSELECT)
     private Set<Language> languages= new HashSet<>();
 
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "cv_file")
     private byte[] cvFile;
 
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "cv_text", columnDefinition = "TEXT")
     private String cvText;
 

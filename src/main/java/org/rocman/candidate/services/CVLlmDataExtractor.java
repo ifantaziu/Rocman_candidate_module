@@ -38,6 +38,10 @@ public class CVLlmDataExtractor {
                 - Extract candidate's data from the given CV text.
                 - If a field is missing or cannot be identified, set its value to "N/A".
                 - Keep the extracted data in the same language as the CV text.
+                 - For the 'skills' field, extract only concrete technical skills, soft skills, tools, programming languages, applications, techniques, frameworks, or certifications. 
+                   Example:
+                   "skills": [{"name": "PostgreSQL"}, {"name": "JDBC"}, {"name": "Spring Data"}]
+                   Do NOT return raw strings, sentences or descriptive text.
                 - Return strictly in this JSON format, with no explanations or text outside the JSON:
                 
                 {
