@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.rocman.candidate.dtos.CandidateRegistrationDTO;
+import org.rocman.candidate.dtos.CandidateRegistrationResponseDTO;
 import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.entities.PasswordResetToken;
 import org.rocman.candidate.entities.VerificationToken;
@@ -62,7 +63,13 @@ public class AuthController {
 
         try {
             Candidate candidate = candidateService.registerCandidate(dto);
-            return ResponseEntity.ok(candidate);
+            CandidateRegistrationResponseDTO response = new CandidateRegistrationResponseDTO();
+            response.setId(candidate.getId());
+            response.setFirstName(candidate.getFirstName());
+            response.setLastName(candidate.getLastName());
+            response.setEmail(candidate.getEmail());
+            response.setMessage("Registration successful");
+            return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             log.warn("Registration failed | reason={} | email={} | timestamp={}",
                     e.getMessage(), dto.getEmail(), LocalDateTime.now());

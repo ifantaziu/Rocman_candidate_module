@@ -5,8 +5,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import jakarta.persistence.EntityNotFoundException;
 import org.apache.tika.Tika;
-import org.rocman.candidate.dtos.CandidateProfileDTO;
-import org.rocman.candidate.dtos.CandidateRegistrationDTO;
+import org.rocman.candidate.dtos.*;
 import org.rocman.candidate.entities.*;
 import org.rocman.candidate.mapper.CandidateMapper;
 import org.rocman.candidate.repositories.*;
@@ -136,19 +135,18 @@ public class CandidateService {
 
         CandidateProfileDTO parsedDto = cvLlmDataExtractor.extractCandidateProfile(extractedText);
         log.debug("CV fields extracted | email={} | parsedDto={}", email, parsedDto);
-        System.out.println("DEBUG DTO: " + parsedDto);
 
         if (parsedDto.getAddress() != null && !parsedDto.getAddress().isBlank()) {
             candidate.setAddress(parsedDto.getAddress());
         }
-        parsedDto.getEducation().forEach(e -> {
+        parsedDto.getEducations().forEach(e -> {
             Education edu = candidateMapper.educationDtoToEntity(e);
             edu.setCandidate(candidate);
             candidate.getEducations().add(edu);
             log.debug("Added education | candidateEmail={} | education={}", email, edu);
         });
 
-        parsedDto.getExperience().forEach(ex -> {
+        parsedDto.getExperiences().forEach(ex -> {
             Experience exp = candidateMapper.experienceDtoToEntity(ex);
             exp.setCandidate(candidate);
             candidate.getExperiences().add(exp);
@@ -184,14 +182,16 @@ public class CandidateService {
     public CandidateProfileDTO getCandidateProfile(Long id) {
         log.info("Loading candidate profile | candidateId={}", id);
 
-        Candidate candidate = candidateRepository.findByIdWithAllRelations(id)
-                .orElseThrow(() -> {
-                    log.warn("Candidate not found | candidateId={}", id);
-                    return new EntityNotFoundException("Candidate not found");
-                });
+        CandidateProfileDTO dto = candidateRepository.findProfileDtoById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Candidate not found"));
+
+        dto.setEducations(candidateRepository.findEducationsByCandidateId(id));
+        dto.setExperiences(candidateRepository.findExperiencesByCandidateId(id));
+        dto.setSkills(candidateRepository.findSkillsByCandidateId(id));
+        dto.setLanguages(candidateRepository.findLanguagesByCandidateId(id));
 
         log.info("Profile fetched successfully | candidateId={}", id);
-        return candidateMapper.toDto(candidate);
+        return dto;
     }
 
     @Transactional
@@ -205,7 +205,7 @@ public class CandidateService {
                 });
 
         if (dto.getEmail() != null) candidate.setEmail(dto.getEmail());
-        if (dto.getPhone() != null) candidate.setPhoneNumber(dto.getPhone());
+        if (dto.getPhoneNumber() != null) candidate.setPhoneNumber(dto.getPhoneNumber());
         if (dto.getLastName() != null) candidate.setLastName(dto.getLastName());
         if (dto.getAddress() != null)
             candidate.setCvText(updateCvTextWithAddress(candidate.getCvText(), dto.getAddress()));
@@ -222,7 +222,7 @@ public class CandidateService {
     }
 
     @Transactional
-    public CandidateProfileDTO.EducationDTO updateEducation(Long id, CandidateProfileDTO.EducationDTO dto) {
+    public EducationDTO updateEducation(Long id, EducationDTO dto) {
         log.info("Updating Education | educationId={}", id);
 
         Education education = educationRepository.findById(id)
@@ -241,7 +241,7 @@ public class CandidateService {
     }
 
     @Transactional
-    public CandidateProfileDTO.ExperienceDTO updateExperience(Long id, CandidateProfileDTO.ExperienceDTO dto) {
+    public ExperienceDTO updateExperience(Long id, ExperienceDTO dto) {
         log.info("Updating Experience | experienceId={}", id);
 
         Experience experience = experienceRepository.findById(id)
@@ -260,7 +260,7 @@ public class CandidateService {
     }
 
     @Transactional
-    public CandidateProfileDTO.SkillDTO updateSkill(Long id, CandidateProfileDTO.SkillDTO dto) {
+    public SkillDTO updateSkill(Long id, SkillDTO dto) {
         log.info("Updating Skill | skillId={}", id);
 
         Skill skill = skillRepository.findById(id)
@@ -277,7 +277,7 @@ public class CandidateService {
     }
 
     @Transactional
-    public CandidateProfileDTO.LanguageDTO updateLanguage(Long id, CandidateProfileDTO.LanguageDTO dto) {
+    public LanguageDTO updateLanguage(Long id, LanguageDTO dto) {
         log.info("Updating Language | languageId={}", id);
 
         Language language = languageRepository.findById(id)
