@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "languages")
+@Table(name = "language")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

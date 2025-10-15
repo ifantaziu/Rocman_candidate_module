@@ -1,6 +1,5 @@
 package org.rocman.candidate.dtos;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,10 +16,10 @@ public class CandidateProfileDTO {
     private String phoneNumber;
     private String address;
 
-    private List<EducationDTO> educations = new ArrayList<>();
-    private List<ExperienceDTO> experiences = new ArrayList<>();
-    private List<SkillDTO> skills = new ArrayList<>();
-    private List<LanguageDTO> languages = new ArrayList<>();
+    private List<EducationDTO> education = new ArrayList<>();
+    private List<ExperienceDTO> experience = new ArrayList<>();
+    private List<SkillDTO> skill = new ArrayList<>();
+    private List<LanguageDTO> language = new ArrayList<>();
 
     public CandidateProfileDTO(Long id, String firstName, String lastName,
                                String email, String phoneNumber, String address) {

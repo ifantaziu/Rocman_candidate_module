@@ -125,7 +125,6 @@ public class CandidateService {
             throw new RuntimeException("File too large. Maximum allowed size is 10 MB.");
         }
         String mimeType = tika.detect(file.getInputStream());
-
         if (!isAllowedType(mimeType)) {
             throw new RuntimeException("Invalid file type: " + mimeType);
         }
@@ -139,36 +138,36 @@ public class CandidateService {
         if (parsedDto.getAddress() != null && !parsedDto.getAddress().isBlank()) {
             candidate.setAddress(parsedDto.getAddress());
         }
-        parsedDto.getEducations().forEach(e -> {
+        parsedDto.getEducation().forEach(e -> {
             Education edu = candidateMapper.educationDtoToEntity(e);
             edu.setCandidate(candidate);
-            candidate.getEducations().add(edu);
+            candidate.getEducation().add(edu);
             log.debug("Added education | candidateEmail={} | education={}", email, edu);
         });
 
-        parsedDto.getExperiences().forEach(ex -> {
+        parsedDto.getExperience().forEach(ex -> {
             Experience exp = candidateMapper.experienceDtoToEntity(ex);
             exp.setCandidate(candidate);
-            candidate.getExperiences().add(exp);
+            candidate.getExperience().add(exp);
             log.debug("Added experience | candidateEmail={} | experience={}", email, exp);
         });
 
-        parsedDto.getSkills().forEach(s -> {
+        parsedDto.getSkill().forEach(s -> {
             Skill skill = candidateMapper.skillDtoToEntity(s);
             skill.setCandidate(candidate);
-            candidate.getSkills().add(skill);
+            candidate.getSkill().add(skill);
             log.debug("Added skill | candidateEmail={} | skill={}", email, skill);
         });
 
-        parsedDto.getLanguages().forEach(l -> {
+        parsedDto.getLanguage().forEach(l -> {
             Language lang = candidateMapper.languageDtoToEntity(l);
+            System.out.println("afisare dupa mapare language"+lang);
             lang.setCandidate(candidate);
-            candidate.getLanguages().add(lang);
+            candidate.getLanguage().add(lang);
             log.debug("Added language | candidateEmail={} | language={}", email, lang);
         });
 
         Candidate savedCandidate = candidateRepository.save(candidate);
-
         log.info("CV upload and persistence completed successfully for email={}", email);
 
         return candidateMapper.toDto(savedCandidate);
@@ -185,10 +184,10 @@ public class CandidateService {
         CandidateProfileDTO dto = candidateRepository.findProfileDtoById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Candidate not found"));
 
-        dto.setEducations(candidateRepository.findEducationsByCandidateId(id));
-        dto.setExperiences(candidateRepository.findExperiencesByCandidateId(id));
-        dto.setSkills(candidateRepository.findSkillsByCandidateId(id));
-        dto.setLanguages(candidateRepository.findLanguagesByCandidateId(id));
+        dto.setEducation(candidateRepository.findEducationByCandidateId(id));
+        dto.setExperience(candidateRepository.findExperienceByCandidateId(id));
+        dto.setSkill(candidateRepository.findSkillByCandidateId(id));
+        dto.setLanguage(candidateRepository.findLanguageByCandidateId(id));
 
         log.info("Profile fetched successfully | candidateId={}", id);
         return dto;
@@ -207,6 +206,7 @@ public class CandidateService {
         if (dto.getEmail() != null) candidate.setEmail(dto.getEmail());
         if (dto.getPhoneNumber() != null) candidate.setPhoneNumber(dto.getPhoneNumber());
         if (dto.getLastName() != null) candidate.setLastName(dto.getLastName());
+        if (dto.getFirstName() != null) candidate.setFirstName(dto.getFirstName());
         if (dto.getAddress() != null)
             candidate.setCvText(updateCvTextWithAddress(candidate.getCvText(), dto.getAddress()));
 
