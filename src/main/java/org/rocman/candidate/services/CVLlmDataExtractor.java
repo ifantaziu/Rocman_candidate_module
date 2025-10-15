@@ -2,14 +2,17 @@ package org.rocman.candidate.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tika.metadata.HttpHeaders;
 import org.rocman.candidate.dtos.CandidateProfileDTO;
 import org.rocman.candidate.dtos.LlmChatCompletionReqDTO;
 import org.rocman.candidate.dtos.LlmChatCompletionRespDTO;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Collections;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -32,55 +35,78 @@ public class CVLlmDataExtractor {
     public CandidateProfileDTO extractCandidateProfile(String rawText) {
         log.info("Sending CV text to LLM | textLength={} chars", rawText.length());
 
+        String safeText = rawText
+                .replaceAll("\\p{C}", " ")
+                .replaceAll("\\s+", " ")
+                .trim();
+
         String prompt = """
                 You are an information extraction assistant.
+                
                 TASK:
                 - Extract candidate's data from the given CV text.
                 - If a field is missing or cannot be identified, set its value to "N/A".
                 - Keep the extracted data in the same language as the CV text.
-                 - For the 'skills' field, extract only concrete technical skills, soft skills, tools, programming languages, applications, techniques, frameworks, or certifications. 
-                   Example:
-                   "skills": [{"name": "PostgreSQL"}, {"name": "JDBC"}, {"name": "Spring Data"}]
-                   Do NOT return raw strings, sentences or descriptive text.
-                - Return strictly in this JSON format, with no explanations or text outside the JSON:
+                - For the 'skill' field, extract only concrete technical skills, soft skills, tools, programming languages, applications, techniques, frameworks, or certifications.
+                
+                Return strictly in this JSON format, with no explanations or text outside the JSON:
                 
                 {
                   "email": "",
-                  "phone": "",
+                  "phoneNumber": "",
                   "firstName": "",
                   "lastName": "",
                   "address": "",
                   "education": [{"level": "", "institution": "", "period": ""}],
                   "experience": [{"title": "", "company": "", "period": ""}],
-                  "skills": [{"name": ""}],
-                  "languages": [{"language": "", "level": ""}]
+                  "skill": [{"name": ""}],
+                  "language": [{"language": "", "level": ""}]
                 }
                 
                 CV text:
-                """ + rawText;
+                """ + safeText;
+
+        LlmChatCompletionReqDTO.ChatMessage chatMessage =
+                new LlmChatCompletionReqDTO.ChatMessage("user", prompt);
 
         LlmChatCompletionReqDTO request = new LlmChatCompletionReqDTO();
-        request.setModel(model);
-        request.setMessages(Collections.singletonList(new LlmChatCompletionReqDTO.ChatMessage(prompt)));
+        request.setModel("llama-3.1-8b-instant");
+        request.setMessages(List.of(chatMessage));
         request.setTemperature(0.0);
 
         try {
-            log.debug("Request payload to LLM: {}", objectMapper.writeValueAsString(request));
+            String jsonPayload = objectMapper.writeValueAsString(request);
+            log.debug("JSON request to LLM (truncated 500 chars): {}",
+                    jsonPayload.length() > 500 ? jsonPayload.substring(0, 500) + "..." : jsonPayload);
 
-            LlmChatCompletionRespDTO response = webClient.post()
-                    .uri("/chat/completions")
-                    .bodyValue(request)
+            String rawResponse = webClient.post()
+                    .uri("/openai/v1/chat/completions")
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                    .bodyValue(jsonPayload)
                     .retrieve()
-                    .bodyToMono(LlmChatCompletionRespDTO.class)
+                    .bodyToMono(String.class)
                     .block();
 
-            if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
-                log.error("LLM returned null or empty response");
+            log.debug("Raw LLM response (truncated 1000 chars): {}",
+                    rawResponse != null && rawResponse.length() > 1000
+                            ? rawResponse.substring(0, 1000) + "..."
+                            : rawResponse);
+
+            if (rawResponse == null) {
+                log.error("LLM returned null response");
                 throw new RuntimeException("Empty response from LLM");
             }
 
+            LlmChatCompletionRespDTO response = objectMapper.readValue(rawResponse, LlmChatCompletionRespDTO.class);
+
+            if (response.getChoices() == null || response.getChoices().isEmpty() ||
+                    response.getChoices().get(0).getMessage() == null) {
+                log.error("LLM response structure invalid");
+                throw new RuntimeException("Invalid response structure from LLM");
+            }
+
             String content = response.getChoices().get(0).getMessage().getContent();
-            log.debug("Raw content from LLM: {}", content);
+            log.debug("Extracted content from LLM: {}", content);
 
             CandidateProfileDTO dto = objectMapper.readValue(content, CandidateProfileDTO.class);
             log.info("Extraction completed successfully for candidate: {} {}", dto.getFirstName(), dto.getLastName());

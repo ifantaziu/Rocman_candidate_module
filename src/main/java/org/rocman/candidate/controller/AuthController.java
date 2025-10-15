@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.rocman.candidate.dtos.CandidateRegistrationDTO;
 import org.rocman.candidate.dtos.CandidateRegistrationResponseDTO;
+import org.rocman.candidate.dtos.PasswordResetRequest;
 import org.rocman.candidate.entities.Candidate;
 import org.rocman.candidate.entities.PasswordResetToken;
 import org.rocman.candidate.entities.VerificationToken;
@@ -68,7 +69,7 @@ public class AuthController {
             response.setFirstName(candidate.getFirstName());
             response.setLastName(candidate.getLastName());
             response.setEmail(candidate.getEmail());
-            response.setMessage("Registration successful");
+            response.setMessage("Registration successful! Please check your inbox for account confirmation.");
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             log.warn("Registration failed | reason={} | email={} | timestamp={}",
@@ -251,7 +252,8 @@ public class AuthController {
                 }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestBody String newPassword) {
+    public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestBody PasswordResetRequest request) {
+        String newPassword = request.newPassword().trim();
         return passwordResetTokenRepository.findByToken(token)
                 .map(resetToken -> {
                     if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {

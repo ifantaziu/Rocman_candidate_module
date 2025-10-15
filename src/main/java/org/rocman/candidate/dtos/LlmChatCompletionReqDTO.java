@@ -1,6 +1,8 @@
 package org.rocman.candidate.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ public class LlmChatCompletionReqDTO {
     private double temperature = 0.0;
 
     @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class ChatMessage {
         private String role;
         private String content;

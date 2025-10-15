@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "skills")
+@Table(name = "skill")
 @Getter
 @Setter
 @NoArgsConstructor

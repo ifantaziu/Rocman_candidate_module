@@ -19,10 +19,10 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     boolean existsByPhoneNumber(String phoneNumber);
 
     @Query("SELECT c FROM Candidate c " +
-            "LEFT JOIN FETCH c.educations " +
-            "LEFT JOIN FETCH c.experiences " +
-            "LEFT JOIN FETCH c.skills " +
-            "LEFT JOIN FETCH c.languages " +
+            "LEFT JOIN FETCH c.education " +
+            "LEFT JOIN FETCH c.experience " +
+            "LEFT JOIN FETCH c.skill " +
+            "LEFT JOIN FETCH c.language " +
             "WHERE c.id = :id")
     Optional<Candidate> findProfileById(@Param("id") Long id);
 
@@ -50,7 +50,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
         FROM Education e
         WHERE e.candidate.id = :candidateId
     """)
-    List<EducationDTO> findEducationsByCandidateId(@Param("candidateId") Long candidateId);
+    List<EducationDTO> findEducationByCandidateId(@Param("candidateId") Long candidateId);
 
     @Query("""
         SELECT new org.rocman.candidate.dtos.ExperienceDTO(
@@ -62,7 +62,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
         FROM Experience ex
         WHERE ex.candidate.id = :candidateId
     """)
-    List<ExperienceDTO> findExperiencesByCandidateId(@Param("candidateId") Long candidateId);
+    List<ExperienceDTO> findExperienceByCandidateId(@Param("candidateId") Long candidateId);
 
     @Query("""
         SELECT new org.rocman.candidate.dtos.SkillDTO(
@@ -72,7 +72,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
         FROM Skill s
         WHERE s.candidate.id = :candidateId
     """)
-    List<SkillDTO> findSkillsByCandidateId(@Param("candidateId") Long candidateId);
+    List<SkillDTO> findSkillByCandidateId(@Param("candidateId") Long candidateId);
 
     @Query("""
         SELECT new org.rocman.candidate.dtos.LanguageDTO(
@@ -83,5 +83,5 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
         FROM Language l
         WHERE l.candidate.id = :candidateId
     """)
-    List<LanguageDTO> findLanguagesByCandidateId(@Param("candidateId") Long candidateId);
+    List<LanguageDTO> findLanguageByCandidateId(@Param("candidateId") Long candidateId);
 }

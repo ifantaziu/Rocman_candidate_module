@@ -47,19 +47,19 @@ public class Candidate implements UserDetails {
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
-    private Set<Education> educations= new HashSet<>();
+    private Set<Education> education = new HashSet<>();
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
-    private Set<Experience> experiences= new HashSet<>();
+    private Set<Experience> experience = new HashSet<>();
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
-    private Set<Skill> skills= new HashSet<>();
+    private Set<Skill> skill = new HashSet<>();
 
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(FetchMode.SUBSELECT)
-    private Set<Language> languages= new HashSet<>();
+    private Set<Language> language = new HashSet<>();
 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "cv_file")
