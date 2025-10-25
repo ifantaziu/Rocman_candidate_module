@@ -108,12 +108,6 @@ public class CandidateService {
         }
     }
 
-
-//    public Optional<Candidate> authenticate(String email, String password) {
-//        return candidateRepository.findByEmail(email)
-//                .filter(candidate -> passwordEncoder.matches(password, candidate.getPassword()));
-//    }
-
     @Transactional
     public CandidateProfileDTO uploadCVByEmail(String email, MultipartFile file) throws IOException {
         log.info("Starting CV upload for candidate with email={}", email);
@@ -161,7 +155,7 @@ public class CandidateService {
 
         parsedDto.getLanguage().forEach(l -> {
             Language lang = candidateMapper.languageDtoToEntity(l);
-            System.out.println("afisare dupa mapare language"+lang);
+            System.out.println("afisare dupa mapare language" + lang);
             lang.setCandidate(candidate);
             candidate.getLanguage().add(lang);
             log.debug("Added language | candidateEmail={} | language={}", email, lang);
@@ -293,10 +287,6 @@ public class CandidateService {
         log.info("Language updated successfully | languageId={}", id);
         return candidateMapper.languageToDto(language);
     }
-
-//    public Optional<Candidate> getCandidateProfile(Long candidateId) {
-//        return candidateRepository.findById(candidateId);
-//    }
 }
 
 

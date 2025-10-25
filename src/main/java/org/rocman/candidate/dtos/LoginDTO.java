@@ -1,4 +1,5 @@
 package org.rocman.candidate.dtos;
+
 import lombok.Data;
 
 @Data
