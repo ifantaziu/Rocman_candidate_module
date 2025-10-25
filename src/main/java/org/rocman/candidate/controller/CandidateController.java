@@ -80,11 +80,4 @@ public class CandidateController {
         log.info("Request PUT update language | languageId={} | dto={}", id, dto);
         return ResponseEntity.ok(candidateService.updateLanguage(id, dto));
     }
-
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> getCandidate(@PathVariable Long id) {
-//        return candidateService.getCandidateProfile(id)
-//                .map(ResponseEntity::ok)
-//                .orElse(ResponseEntity.notFound().build());
-//    }
 }

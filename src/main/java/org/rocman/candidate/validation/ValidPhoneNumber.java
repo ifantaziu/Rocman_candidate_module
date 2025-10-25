@@ -11,6 +11,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidPhoneNumber {
     String message() default "Invalid phone number";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

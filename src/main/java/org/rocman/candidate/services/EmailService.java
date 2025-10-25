@@ -29,7 +29,7 @@ public class EmailService {
             log.info("Email sent | type=verification | to={} | timestamp={}", toEmail, LocalDateTime.now());
         } catch (Exception e) {
             log.error("Email send failed | type=verification | to={} | timestamp={}",
-                    toEmail, LocalDateTime.now(), e); // stack trace
+                    toEmail, LocalDateTime.now(), e);
             throw new RuntimeException("Failed to send verification email");
         }
     }
@@ -49,7 +49,7 @@ public class EmailService {
             log.info("Email sent | type=password_reset | to={} | timestamp={}", toEmail, LocalDateTime.now());
         } catch (Exception e) {
             log.error("Email send failed | type=password_reset | to={} | timestamp={}",
-                    toEmail, LocalDateTime.now(), e); // stack trace
+                    toEmail, LocalDateTime.now(), e);
             throw new RuntimeException("Failed to send reset password email");
         }
     }

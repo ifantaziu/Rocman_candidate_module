@@ -247,9 +247,9 @@ public class AuthController {
                 .orElseGet(() -> {
                     log.warn("Password reset token verification failed | reason=invalid token | token={} | timestamp={}",
                             token, LocalDateTime.now());
-                        return ResponseEntity.badRequest().body("Invalid token.");
+                    return ResponseEntity.badRequest().body("Invalid token.");
                 });
-                }
+    }
 
     @PostMapping("/reset-password")
     public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestBody PasswordResetRequest request) {
@@ -281,13 +281,4 @@ public class AuthController {
                     return ResponseEntity.badRequest().body("Invalid token.");
                 });
     }
-
-//    @PostMapping("/login")
-//    public ResponseEntity<Object> login(@RequestBody LoginDTO loginDTO) {
-//        Optional<Candidate> candidate = candidateService.authenticate(
-//                loginDTO.getEmail(), loginDTO.getPassword()
-//        );
-//
-//        return candidate.<ResponseEntity<Object>>map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(401).body("Invalid credentials"));
-//    }
 }
