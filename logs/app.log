@@ -64525,3 +64525,585 @@ Caused by: org.hibernate.query.sqm.PathElementException: Could not resolve attri
                     [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-10-20 10:44:58 INFO  [reqId=] [userId=] [email=]
                     [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-27 16:22:19 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-10-27 16:22:19 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 1084 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-10-27 16:22:19 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-10-27 16:22:19 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-10-27 16:22:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-27 16:22:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 423 ms. Found 7 JPA repository interfaces.
+2025-10-27 16:22:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-27 16:22:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-27 16:22:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-10-27 16:22:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-10-27 16:22:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-10-27 16:22:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5370 ms
+2025-10-27 16:22:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-27 16:22:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-10-27 16:22:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-27 16:22:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-27 16:22:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-10-27 16:22:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@44a13699
+2025-10-27 16:22:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-10-27 16:22:28 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-27 16:22:28 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-27 16:22:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-27 16:22:31 INFO  [reqId=] [userId=] [email=]
+                    [ip=] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@40aaf656] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-10-27 16:22:32 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-27 16:22:32 INFO  [reqId=] [userId=] [email=]
+                    [ip=] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-27 16:22:34 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-27 16:22:34 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SecurityConfig - SecurityConfig initialized with JwtAuthenticationFilter and CandidateDetailsService
+2025-10-27 16:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com
+2025-10-27 16:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - API key prefix=gsk_sQ
+2025-10-27 16:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com 
+2025-10-27 16:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Registering global ObjectMapper with default Spring modules
+2025-10-27 16:22:35 INFO  [reqId=] [userId=] [email=]
+                    [ip=] CVLlmDataExtractor - CVLlmDataExtractor initialized with model=llama-3.1-8b-instant
+2025-10-27 16:22:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-10-27 16:22:37 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-27 16:22:39 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-10-27 16:22:39 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-27 16:22:39 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 21.054 seconds (process running for 24.055)
+2025-10-27 16:36:54 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-27 16:36:55 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-10-27 16:36:55 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-27 16:36:55 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-27 16:36:55 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 15:17:00 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-10-29 15:17:00 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 8848 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-10-29 15:17:00 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-10-29 15:17:00 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-10-29 15:17:05 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 15:17:06 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 625 ms. Found 7 JPA repository interfaces.
+2025-10-29 15:17:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 15:17:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-29 15:17:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-10-29 15:17:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-10-29 15:17:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 15:17:10 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 9804 ms
+2025-10-29 15:17:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 15:17:12 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-10-29 15:17:12 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 15:17:13 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 15:17:13 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 15:17:15 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5bdb6ea8
+2025-10-29 15:17:15 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 15:17:15 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-29 15:17:15 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 15:17:19 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 15:17:19 INFO  [reqId=] [userId=] [email=]
+                    [ip=] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@c680819] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-10-29 15:17:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 15:17:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-29 15:17:26 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 15:17:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SecurityConfig - SecurityConfig initialized with JwtAuthenticationFilter and CandidateDetailsService
+2025-10-29 15:17:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com
+2025-10-29 15:17:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - API key prefix=gsk_sQ
+2025-10-29 15:17:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com 
+2025-10-29 15:17:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Registering global ObjectMapper with default Spring modules
+2025-10-29 15:17:27 INFO  [reqId=] [userId=] [email=]
+                    [ip=] CVLlmDataExtractor - CVLlmDataExtractor initialized with model=llama-3.1-8b-instant
+2025-10-29 15:17:29 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-10-29 15:17:29 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-29 15:17:32 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-10-29 15:17:32 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 15:17:32 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 33.645 seconds (process running for 37.867)
+2025-10-29 16:01:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 16:01:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-10-29 16:01:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 16:01:31 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 16:01:31 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 16:04:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-10-29 16:04:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 12412 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-10-29 16:04:56 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-10-29 16:04:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-10-29 16:04:59 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 16:05:00 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 534 ms. Found 7 JPA repository interfaces.
+2025-10-29 16:05:01 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 16:05:01 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-29 16:05:01 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-10-29 16:05:01 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-10-29 16:05:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 16:05:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4947 ms
+2025-10-29 16:05:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 16:05:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-10-29 16:05:03 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 16:05:03 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 16:05:03 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 16:05:04 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7074da1d
+2025-10-29 16:05:04 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 16:05:04 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-29 16:05:04 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 16:05:07 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 16:05:07 INFO  [reqId=] [userId=] [email=]
+                    [ip=] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1e60890c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-10-29 16:05:08 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 16:05:08 INFO  [reqId=] [userId=] [email=]
+                    [ip=] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-29 16:05:11 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 16:05:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SecurityConfig - SecurityConfig initialized with JwtAuthenticationFilter and CandidateDetailsService
+2025-10-29 16:05:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com
+2025-10-29 16:05:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - API key prefix=gsk_sQ
+2025-10-29 16:05:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com 
+2025-10-29 16:05:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Registering global ObjectMapper with default Spring modules
+2025-10-29 16:05:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] CVLlmDataExtractor - CVLlmDataExtractor initialized with model=llama-3.1-8b-instant
+2025-10-29 16:05:13 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-10-29 16:05:13 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-29 16:05:14 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-10-29 16:05:14 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 16:05:14 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 18.824 seconds (process running for 21.595)
+2025-10-29 16:05:21 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-29 16:05:21 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-10-29 16:05:21 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Completed initialization in 0 ms
+2025-10-29 16:12:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 16:12:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-10-29 16:12:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 16:12:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 16:12:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-29 16:12:36 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-10-29 16:12:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 5256 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-10-29 16:12:37 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-10-29 16:12:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-10-29 16:12:40 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-29 16:12:40 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 362 ms. Found 7 JPA repository interfaces.
+2025-10-29 16:12:42 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-29 16:12:42 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-29 16:12:42 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-10-29 16:12:42 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-10-29 16:12:42 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-10-29 16:12:42 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4459 ms
+2025-10-29 16:12:42 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-29 16:12:43 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-10-29 16:12:43 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-29 16:12:44 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-29 16:12:44 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-10-29 16:12:44 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@749ee0e3
+2025-10-29 16:12:44 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-10-29 16:12:44 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-29 16:12:44 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-29 16:12:47 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-29 16:12:47 INFO  [reqId=] [userId=] [email=]
+                    [ip=] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2898c70d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-10-29 16:12:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 16:12:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-29 16:12:51 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-29 16:12:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SecurityConfig - SecurityConfig initialized with JwtAuthenticationFilter and CandidateDetailsService
+2025-10-29 16:12:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com
+2025-10-29 16:12:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - API key prefix=gsk_sQ
+2025-10-29 16:12:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com 
+2025-10-29 16:12:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Registering global ObjectMapper with default Spring modules
+2025-10-29 16:12:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] CVLlmDataExtractor - CVLlmDataExtractor initialized with model=llama-3.1-8b-instant
+2025-10-29 16:12:52 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-10-29 16:12:52 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-29 16:12:53 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-10-29 16:12:53 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-29 16:12:53 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 17.784 seconds (process running for 20.277)
+2025-10-29 16:13:16 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-29 16:13:16 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-10-29 16:13:16 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Completed initialization in 7 ms
+2025-10-29 16:21:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-29 16:21:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-10-29 16:21:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-29 16:21:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-29 16:21:02 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-30 10:37:09 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-10-30 10:37:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 12868 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-10-30 10:37:11 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-10-30 10:37:11 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-10-30 10:37:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30 10:37:20 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 493 ms. Found 7 JPA repository interfaces.
+2025-10-30 10:37:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-30 10:37:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-30 10:37:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-10-30 10:37:22 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-10-30 10:37:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-10-30 10:37:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 8238 ms
+2025-10-30 10:37:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30 10:37:23 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-10-30 10:37:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-30 10:37:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30 10:37:24 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-10-30 10:37:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@b787274
+2025-10-30 10:37:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-10-30 10:37:26 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-30 10:37:26 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-30 10:37:29 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30 10:37:29 INFO  [reqId=] [userId=] [email=]
+                    [ip=] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@40dcbf7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-10-30 10:37:30 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 10:37:31 INFO  [reqId=] [userId=] [email=]
+                    [ip=] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-30 10:37:33 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-30 10:37:33 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SecurityConfig - SecurityConfig initialized with JwtAuthenticationFilter and CandidateDetailsService
+2025-10-30 10:37:33 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com
+2025-10-30 10:37:33 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - API key prefix=gsk_sQ
+2025-10-30 10:37:33 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com 
+2025-10-30 10:37:34 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Registering global ObjectMapper with default Spring modules
+2025-10-30 10:37:34 INFO  [reqId=] [userId=] [email=]
+                    [ip=] CVLlmDataExtractor - CVLlmDataExtractor initialized with model=llama-3.1-8b-instant
+2025-10-30 10:37:36 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-10-30 10:37:36 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-30 10:37:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-10-30 10:37:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-30 10:37:37 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 29.366 seconds (process running for 34.687)
+2025-10-30 10:47:21 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-30 10:47:21 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-10-30 10:47:21 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Completed initialization in 7 ms
+2025-10-30 12:36:45 WARN  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=41m48s312ms301µs200ns).
+2025-10-30 13:28:38 WARN  [reqId=] [userId=] [email=]
+                    [ip=] DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-10-30 13:28:50 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-10-30 13:28:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] GracefulShutdown - Graceful shutdown complete
+2025-10-30 13:28:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 13:28:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-10-30 13:28:51 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-10-30 14:52:39 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HV000001: Hibernate Validator 8.0.2.Final
+2025-10-30 14:52:40 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Starting RocmanCandidateModuleApplication using Java 17.0.15 with PID 14732 (D:\Tekwill\Rocman\candidate-module\candidate-module\target\classes started by Admin in D:\Tekwill\Rocman\candidate-module\candidate-module)
+2025-10-30 14:52:40 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-10-30 14:52:40 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - The following 1 profile is active: "local"
+2025-10-30 14:52:43 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-30 14:52:43 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 419 ms. Found 7 JPA repository interfaces.
+2025-10-30 14:52:45 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-10-30 14:52:45 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-10-30 14:52:46 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardService - Starting service [Tomcat]
+2025-10-30 14:52:46 INFO  [reqId=] [userId=] [email=]
+                    [ip=] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-10-30 14:52:46 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring embedded WebApplicationContext
+2025-10-30 14:52:46 INFO  [reqId=] [userId=] [email=]
+                    [ip=] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5662 ms
+2025-10-30 14:52:47 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-30 14:52:47 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-10-30 14:52:47 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-10-30 14:52:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-10-30 14:52:48 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Starting...
+2025-10-30 14:52:49 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@b787274
+2025-10-30 14:52:49 INFO  [reqId=] [userId=] [email=]
+                    [ip=] HikariDataSource - HikariPool-1 - Start completed.
+2025-10-30 14:52:49 WARN  [reqId=] [userId=] [email=]
+                    [ip=] deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-30 14:52:49 INFO  [reqId=] [userId=] [email=]
+                    [ip=] pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.5
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-10-30 14:52:52 INFO  [reqId=] [userId=] [email=]
+                    [ip=] JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-10-30 14:52:52 INFO  [reqId=] [userId=] [email=]
+                    [ip=] access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@40dcbf7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-10-30 14:52:53 INFO  [reqId=] [userId=] [email=]
+                    [ip=] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-30 14:52:54 INFO  [reqId=] [userId=] [email=]
+                    [ip=] QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-10-30 14:52:56 DEBUG [reqId=] [userId=] [email=]
+                    [ip=] JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+2025-10-30 14:52:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] SecurityConfig - SecurityConfig initialized with JwtAuthenticationFilter and CandidateDetailsService
+2025-10-30 14:52:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com
+2025-10-30 14:52:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - API key prefix=gsk_sQ
+2025-10-30 14:52:56 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Initializing OpenAI WebClient | baseUrl=https://api.groq.com 
+2025-10-30 14:52:57 INFO  [reqId=] [userId=] [email=]
+                    [ip=] OpenAIConfig - Registering global ObjectMapper with default Spring modules
+2025-10-30 14:52:58 INFO  [reqId=] [userId=] [email=]
+                    [ip=] CVLlmDataExtractor - CVLlmDataExtractor initialized with model=llama-3.1-8b-instant
+2025-10-30 14:52:59 INFO  [reqId=] [userId=] [email=]
+                    [ip=] InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-10-30 14:52:59 WARN  [reqId=] [userId=] [email=]
+                    [ip=] InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-10-30 14:53:00 INFO  [reqId=] [userId=] [email=]
+                    [ip=] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-10-30 14:53:00 INFO  [reqId=] [userId=] [email=]
+                    [ip=] TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-10-30 14:53:00 INFO  [reqId=] [userId=] [email=]
+                    [ip=] RocmanCandidateModuleApplication - Started RocmanCandidateModuleApplication in 23.042 seconds (process running for 27.19)
+2025-10-30 15:23:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-30 15:23:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-10-30 15:23:25 INFO  [reqId=] [userId=] [email=]
+                    [ip=] DispatcherServlet - Completed initialization in 133 ms
+2025-10-30 15:23:26 WARN  [reqId=] [userId=] [email=]
+                    [ip=] DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-10-30 15:23:28 WARN  [reqId=] [userId=] [email=]
+                    [ip=] DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-10-30 15:23:33 WARN  [reqId=] [userId=] [email=]
+                    [ip=] DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-10-30 15:23:49 WARN  [reqId=] [userId=] [email=]
+                    [ip=] DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-10-30 22:21:23 WARN  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6h29s798ms248µs300ns).
+2025-10-30 23:16:56 WARN  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=55m33s626ms893µs800ns).
+2025-10-31 00:10:34 WARN  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=37m8s165ms528µs800ns).
+2025-10-31 03:26:04 WARN  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h29s867ms812µs199ns).
+2025-10-31 13:46:05 WARN  [reqId=] [userId=] [email=]
+                    [ip=] HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10h20m8s812ms493µs1ns).

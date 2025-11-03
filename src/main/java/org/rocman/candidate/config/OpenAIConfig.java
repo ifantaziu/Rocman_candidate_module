@@ -1,4 +1,4 @@
-package org.rocman.candidate.mapper;
+package org.rocman.candidate.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
